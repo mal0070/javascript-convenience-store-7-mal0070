@@ -1,8 +1,8 @@
 import { readFile } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import Product from './Product.js';
-import Promotion from './Promotion.js';
+import Product from '../models/Product.js';
+import Promotion from '../models/Promotion.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

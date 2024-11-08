@@ -1,11 +1,13 @@
+import Stock from Stock.js;
+
 class ShoppingList {
-  #items = new Map(); //name, q 저장. 필드를 작게!
+  items = new Map(); //name, q 저장. 필드를 작게!
 
   constructor(input) {
     const parsedInput = this.parseInput(input);
     const validatedInput = this.validateInput(parsedInput);
-    this.#items.set(name, validatedInput.name);
-    this.#items.set(quantity, validatedInput.quantity);
+    this.items.set('name', validatedInput.name);
+    this.items.set('quantity', validatedInput.quantity);
   }
 
   parseInput(input) {
@@ -22,6 +24,7 @@ class ShoppingList {
   }
 
   validateInput(input) {
+    const stock = new Stock();
     if (!Stock.has(input.name)) { //이거 고치기.Stock 생성
       
     }
