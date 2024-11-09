@@ -15,13 +15,13 @@ const OutputView = {
       Console.print(`- ${product.name} ${printedPrice}원 ${product.quantity}개 ${printedPromotion}`);
     });
   },
-
-  askMembership(){
-    Console.print('멤버십 할인을 받으시겠습니까? (Y/N)');
-  },
-
-  printTotal(total) {
-    Console.print(`총 금액: ${total}원`);
+  
+  printRecipt(totalPrice, promoDiscount, membershipDiscount, money){
+    Console.print(`
+      총구매액: ${totalPrice}
+      행사할인: ${promoDiscount}
+      멤버십할인: ${membershipDiscount}
+      내실돈: ${money}`)
   }
 };
 

@@ -11,4 +11,13 @@ export const InputView = {
       return this.readItem();
     }
   },
+  async askMembership(){
+    try {
+      const ans = await Console.readLineAsync('멤버십 할인을 받으시겠습니까? (Y/N)\n');
+      return ans;
+    } catch (error){
+      Console.print("[ERROR] 잘못된 입력입니다. 다시 입력해 주세요.");
+      return this.applyMembership();
+    }
+  }
 };

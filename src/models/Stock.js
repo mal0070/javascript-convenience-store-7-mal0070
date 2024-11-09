@@ -9,12 +9,12 @@ class Stock {
     return this.#products;
   }
 
-  getProductsByName(name) {
+  getTargetProducts(name) {
     return this.#products.filter((product) => product.name === name);
   }
 
   updateStock(item) {
-    const targetProducts = this.getProductsByName(item.name);
+    const targetProducts = this.getTargetProducts(item.name);
 
     if (!targetProducts || targetProducts.length === 0) {
       throw new Error('[ERROR] 존재하지 않는 상품입니다. 다시 입력해 주세요.');
@@ -27,6 +27,7 @@ class Stock {
     }
 
     targetProducts[0].quantity -= item.quantity;
+    return (targetProducts[0].price)*item.quantity;
   }
 
   checkQuantities(targetProducts, item) {

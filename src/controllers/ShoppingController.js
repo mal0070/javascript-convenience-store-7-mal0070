@@ -4,6 +4,7 @@ import fetchData from '../utils/DataGenerator.js';
 import FILE_PATHS from '../constants/filePaths.js';
 import Stock from '../models/Stock.js';
 import { Console } from '@woowacourse/mission-utils';
+import Membership from '../models/Membership.js';
 
 class ShoppingController {
   async run() {
@@ -13,22 +14,30 @@ class ShoppingController {
 
     let items;
     let isValidateItem = false;
+    let totalPrice = 0;
 
     while(!isValidateItem){
       try {
         items = await InputView.readItem();
-        items.forEach(item => stock.updateStock(item));
+        items.forEach(item => {
+          totalPrice+= stock.updateStock(item);
+        });
         isValidateItem = true;
       } catch (error) {
         Console.print(error.message);
       }
     }
 
-    const promotions = await fetchData(FILE_PATHS.PROMOTION);
-    //프로모션 null -> 걍 구매
-    //null이 아니면 
-    //promotions에서 일치하는거 찾아서 날짜보기. 현재날짜가 더 적으면 구매
-    //
+    let membershipAns = await InputView.askMembership();
+    if(membershipAns === 'Y'){
+      const membership = new Membership(totalPrice);
+      OutputView.printRecipt(totalPrice,0,membership.discount,membership.getAppliedPrice(totalPrice));
+    }
+    if(membershipAns === 'N'){
+      OutputView.printRecipt(totalPrice,0,0,money);
+    }
+
+    //const promotions = await fetchData(FILE_PATHS.PROMOTION);
   }
 }
 
