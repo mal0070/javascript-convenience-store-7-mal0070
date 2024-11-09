@@ -31,7 +31,9 @@ function getFileContent(file){
 function parseProducts(dataRows) {
     return dataRows.map(row => {
         const [name, price, quantity, promotion] = row.split(',');
-        return new Product(name, parseInt(price), parseInt(quantity), promotion);
+        let processedPromotion = promotion;
+        if (processedPromotion === "null") processedPromotion = null;
+        return new Product(name, parseInt(price), parseInt(quantity), processedPromotion);
     })
 }
 

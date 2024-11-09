@@ -6,7 +6,7 @@ const OutputView = {
     products.forEach(product => {
       let printedPrice = product.price.toLocaleString();
       let printedPromotion = product.promotion;
-      if(product.promotion === 'null'){
+      if(product.promotion === null){
         printedPromotion = '재고 없음'
       }
       Console.print(`- ${product.name} ${printedPrice}원 ${product.quantity}개 ${printedPromotion}`);
