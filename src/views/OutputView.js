@@ -16,6 +16,10 @@ const OutputView = {
     });
   },
 
+  askMembership(){
+    Console.print('멤버십 할인을 받으시겠습니까? (Y/N)');
+  },
+
   printTotal(total) {
     Console.print(`총 금액: ${total}원`);
   }
