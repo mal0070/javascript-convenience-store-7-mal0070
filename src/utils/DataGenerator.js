@@ -4,12 +4,9 @@ import { fileURLToPath } from 'url';
 import Product from '../models/Product.js';
 import Promotion from '../models/Promotion.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 export default async function fetchData(filePath) {
     try {
-        const absolutePath = path.resolve(__dirname, filePath);
+        const absolutePath = path.resolve(process.cwd(), filePath);
         const file = await readFile(absolutePath, 'utf-8');
         return getFileContent(file);
     } catch (error) {
