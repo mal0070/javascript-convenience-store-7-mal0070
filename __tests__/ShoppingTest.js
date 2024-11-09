@@ -1,7 +1,7 @@
 import FILE_PATHS from '../src/constants/filePaths';
 import fetchData from '../src/utils/DataGenerator';
 import Stock from '../src/models/Stock';
-import parseInput from '../src/utils/ParsingInput';
+import parseInput from '../src/utils/InputParser';
 
 describe('상품 구매 가능 여부 테스트', () => {
   test('입력한 상품 이름이 재고목록에 있고, 수량이 남아있으면 구매할 수 있다.', async () => {
@@ -26,4 +26,8 @@ describe('상품 구매 가능 여부 테스트', () => {
       targetProducts[0].quantity*/
     });
   });
+  
+  test("예외 테스트")
 });
+
+describe("상품 구매 테스트")
