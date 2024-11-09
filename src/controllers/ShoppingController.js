@@ -23,7 +23,6 @@ class ShoppingController {
         Console.print(error.message);
       }
     }
-    //재입력로직 -> 커밋!!ㅇ
     //테스트 통과하게끔 파일 불러오는 로직 수정
 
     //const promotions = await fetchData(FILE_PATHS.PROMOTION);
