@@ -25,6 +25,7 @@ class Stock {
     const regularProduct = targetProducts.find((product) => product.promotion === null);
     const promoProduct = targetProducts.find((product) => product.promotion != null);
 
+
     const { totalPrice, freeItems, restQuantity } = await this.applyPromotion(item,regularProduct,promoProduct);
 
     return { totalPrice, freeItems, restQuantity };
@@ -65,7 +66,7 @@ class Stock {
     let restQuantity = item.quantity;
     let price = 0;
 
-    if (item.quantity % N !== 0) {
+    if (item.quantity % N+1 !== 0) {
       const additionalItemsNeeded = N - (item.quantity % N);
       const applyPromotion = await InputView.askAppliedPromotion(item,additionalItemsNeeded);
       if (applyPromotion === 'Y') {
