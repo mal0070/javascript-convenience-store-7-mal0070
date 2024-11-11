@@ -20,7 +20,8 @@ class ShoppingController {
       try {
         items = await InputView.readItem();
         for (const item of items) {
-          totalPrice+= await stock.getTotalPrice(item);
+          const { totalPrice: itemPrice, freeItems } = await stock.processOrder(item);
+          totalPrice += itemPrice;
           await stock.updateStock(item);
         }
         isValidateItem = true;
