@@ -9,7 +9,7 @@ import Membership from '../models/Membership.js';
 class ShoppingController {
   async run() {
     const initProducts = await fetchData(FILE_PATHS.PRODUCTS);
-    const stock = new Stock(initProducts);//[name: qu: pr: promo: ]
+    const stock = new Stock(initProducts);
     OutputView.printStock(stock);
 
     let items;
@@ -19,9 +19,10 @@ class ShoppingController {
     while(!isValidateItem){
       try {
         items = await InputView.readItem();
-        items.forEach(item => {
-          totalPrice+= stock.updateStock(item);
-        });
+        for (const item of items) {
+          totalPrice+= await stock.getTotalPrice(item);
+          await stock.updateStock(item);
+        }
         isValidateItem = true;
       } catch (error) {
         Console.print(error.message);
@@ -36,8 +37,6 @@ class ShoppingController {
     if(membershipAns === 'N'){
       OutputView.printRecipt(totalPrice,0,0,money);
     }
-
-    //const promotions = await fetchData(FILE_PATHS.PROMOTION);
   }
 }
 

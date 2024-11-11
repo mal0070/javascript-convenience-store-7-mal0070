@@ -1,6 +1,5 @@
 import { readFile } from 'fs/promises';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import Product from '../models/Product.js';
 import Promotion from '../models/Promotion.js';
 
@@ -40,4 +39,3 @@ function parsePromotions(dataRows){
         return new Promotion(name, parseInt(buy), parseInt(get), new Date(start_date),new Date(end_date));
     });
 }
-
